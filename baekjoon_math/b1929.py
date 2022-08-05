@@ -61,30 +61,25 @@
 
 #에라토스테네스의 체
 
+import math
+
 n, m = input().split()
 
 n = int(n)
 m = int(m)
 
-arr = []
+arr = [True for i in range(m + 1)]
 
-for i in range(2, m):
-    arr.append(i)
+arr[0] = arr[1] = False
 
-for i in range(0, int(len(arr)/2)):
-
-    if arr[i] == 0:
-            continue
+for i in range(2, int(math.sqrt(m)) + 1):
     
-    for j in range(0, len(arr)):
-        
-        if arr[j] == 0:
-            continue
+    if arr[i]:
+        for j in range(i, len(arr), i):
+            if i != j:
+                arr[j] = False
+    
 
-        if arr[i] != arr[j] and int(arr[j] % arr[i]) == 0:
-            arr[j] = 0
-
-for i in arr:
-
-    if i >= n and i != 0:
+for i in range(n, len(arr)):
+    if arr[i]:
         print(i)
