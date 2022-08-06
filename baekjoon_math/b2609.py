@@ -1,12 +1,7 @@
 # https://www.acmicpc.net/problem/2609
 # 최대공약수 최소공배수
 
-
-from tkinter import Y
-
-
 x, y = map(int, input().split())
-
 
 # 최대 공약수
 def GCD(x, y):
