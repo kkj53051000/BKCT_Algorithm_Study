@@ -30,6 +30,5 @@ public class P64061 {
         }
 
         System.out.println(answer);
-
     }
 }
