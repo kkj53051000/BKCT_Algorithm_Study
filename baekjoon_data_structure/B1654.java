@@ -19,30 +19,30 @@ public class B1654 {
         }
 
         long left = 0;
-        long right = (arr.stream().mapToInt(Integer::intValue).sum() / n);
+        long right = (arr.stream().mapToInt(Integer::intValue).sum() / k);
+
 
         long answer = 0;
 
         while (left <= right) {
-            long mid = (left + right) / 2;
-            long sum = 0;
+            long tempCount = 0;
+            long tempSum = 0;
 
-            for (int i : arr) {
-                sum += i/mid;
+            long mid = (left + right) / 2;
+
+            for (int i : arr){
+                tempCount += i / mid;
+                tempSum += i;
             }
 
-            if (sum < k) {
-                right = mid - 1;
-            }else if (sum > k) {
-                left = mid + 1;
-            }else {
-                if (answer < mid) {
+            if (tempCount <= k) {
+                if (tempSum < arr.stream().mapToInt(Integer::intValue).sum()) {
                     answer = mid;
                 }
-                left++;
+                left = mid + 1;
+            }else {
+                right = mid - 1;
             }
-
-
         }
 
         System.out.println(answer);
